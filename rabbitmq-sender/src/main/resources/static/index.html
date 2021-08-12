@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>RabbitMQ Blaster</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1>RabbitMQ Blaster</h1>
+      <div id="app">
+        <h2>Send Messages to RabbitMQ</h2>
+
+        <form>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <input class="form-control" id="message" type="text" v-model="message" />
+          </div>
+          <div class="form-group">
+            <label for="interval">Interval</label>
+            <input class="form-control" id="interval" type="text" v-model="interval" />
+          </div>
+        </form>
+        <button class="btn btn-primary" @click="start" v-bind:disabled="!startEnabled">Start</button>
+        <button class="btn btn-primary" @click="stop" v-bind:disabled="!started">Stop</button>
+        <button class="btn btn-primary" @click="reset">Reset</button>
+
+        <div v-if="responses.length > 0">
+          <table class="table table-striped">
+            <thead class="thead-light">
+              <tr>
+                <th>Message</th>
+                <th>Response</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="sentMessage in responses">
+                <td>{{sentMessage.message}}</td>
+                <td>{{sentMessage.response}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script type="text/javascript" src="/webjars/vue/vue.min.js"></script>
+      <script type="text/javascript" src="app.js"></script>
+    </div>
+  </body>
+</html>
